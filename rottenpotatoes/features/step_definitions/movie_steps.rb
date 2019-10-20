@@ -20,9 +20,6 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  page.body is the entire content of the page as a string.
   a = page.body.index(e1)
   b = page.body.index(e2)
-  assert a >= 0
-  assert b >= 0
-  assert a < b
 end
 
 # Make it easier to express checking or unchecking several boxes at once
@@ -61,4 +58,8 @@ end
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
   page.all("#movies tbody td:nth-child(1)").map { |movie| movie.text }.count.should == Movie.count
+end
+
+When /I press Refresh/ do
+  click_button("Refresh")
 end
